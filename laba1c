@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+#include <conio.h>
+#include <windows.h>
+
+using namespace std;
+
+class Otdelkadrov {
+private:
+    string name;
+    int workers;
+    int hours;
+    double zp;
+    int nalog;
+
+public:
+    Otdelkadrov(string n, int w, int h, double z, int na) {
+        name = n;
+        if (w < 0) {
+            workers = 1;
+        }
+        else {
+            workers = w;
+        }
+        if (h < 0) {
+            hours = 1;
+        }
+        else {
+            hours = h;
+        }
+        if (z < 0) {
+            zp = 0;
+        }
+        else {
+            zp = z;
+        }
+        if (na < 0) {
+            nalog = 0;
+        }
+        else {
+            nalog = na;
+        }
+    };
+    int countvuplata() {
+        return zp * hours * workers / 100 * nalog;
+    }
+    string showname() {
+        return name;
+    }
+};
+
+
+int main() {
+    setlocale(LC_ALL, "rus");
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+
+    Otdelkadrov Politech("Politeh", 10, 100, 10, 13);
+    cout << "В предприятии " << Politech.showname() << " общая выплата по подоходному налогу: " << Politech.countvuplata();
+    return 0;
+}
